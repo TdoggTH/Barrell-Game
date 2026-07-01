@@ -2,12 +2,17 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sxlej"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_pakj4"]
-margin = 0.0
-size = Vector3(26.714691, 0.143, 31.114712)
+[sub_resource type="BoxMesh" id="BoxMesh_b0bku"]
+size = Vector3(60, 2, 60)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y4m6m"]
+size = Vector3(60, 2, 60)
 
 [node name="StaticBody3D" type="StaticBody3D" unique_id=37099076]
 physics_material_override = SubResource("PhysicsMaterial_sxlej")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1437723890]
-shape = SubResource("BoxShape3D_pakj4")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=791529216]
+mesh = SubResource("BoxMesh_b0bku")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=534366321]
+shape = SubResource("BoxShape3D_y4m6m")

@@ -3,22 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://chmdt3hsowt37" path="res://generic-floor.tscn" id="1_pyidc"]
 [ext_resource type="PackedScene" uid="uid://dru1unbjhkqnu" path="res://main-character.tscn" id="2_vvh5c"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_sxlej"]
-size = Vector3(60, 2, 60)
-
-[sub_resource type="BoxMesh" id="BoxMesh_pakj4"]
-size = Vector3(60, 2, 60)
-
 [node name="Node3D" type="Node3D" unique_id=502212124]
 
 [node name="ground" parent="." unique_id=37099076 instance=ExtResource("1_pyidc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="ground" unique_id=1738284867]
-shape = SubResource("BoxShape3D_sxlej")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ground" unique_id=1167492535]
-mesh = SubResource("BoxMesh_pakj4")
 
 [node name="main-character" parent="." unique_id=402933344 instance=ExtResource("2_vvh5c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0865798, 0)
