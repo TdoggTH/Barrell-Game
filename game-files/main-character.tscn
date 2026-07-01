@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dru1unbjhkqnu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pakj4"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=402933344]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=205276155]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5152019, -0.4819619)
+fov = 70.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1248263248]
+shape = SubResource("CapsuleShape3D_pakj4")
