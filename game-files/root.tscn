@@ -1,12 +1,31 @@
 [gd_scene format=3 uid="uid://du7t2tc48rfv"]
 
 [ext_resource type="PackedScene" uid="uid://chmdt3hsowt37" path="res://generic-floor.tscn" id="1_pyidc"]
-[ext_resource type="PackedScene" uid="uid://dru1unbjhkqnu" path="res://main-character.tscn" id="2_vvh5c"]
+[ext_resource type="PackedScene" uid="uid://b1m0h02g35vjy" path="res://basic_enemy.tscn" id="2_pyidc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pakj4"]
 
 [node name="Node3D" type="Node3D" unique_id=502212124]
 
 [node name="ground" parent="." unique_id=37099076 instance=ExtResource("1_pyidc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+metadata/_edit_lock_ = true
 
-[node name="main-character" parent="." unique_id=402933344 instance=ExtResource("2_vvh5c")]
+[node name="main-character" type="CharacterBody3D" parent="." unique_id=402933344]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0865798, 0)
+
+[node name="Camera3D" type="Camera3D" parent="main-character" unique_id=205276155]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5152019, -0.4819622)
+fov = 70.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="main-character" unique_id=1248263248]
+shape = SubResource("CapsuleShape3D_pakj4")
+
+[node name="basic-enemy3" parent="." unique_id=1391856522 instance=ExtResource("2_pyidc")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -2.0685086, 0.90000004, -7.269794)
+
+[node name="basic-enemy" parent="." unique_id=362026838 instance=ExtResource("2_pyidc")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.19171667, 0.90000004, -7.358869)
+
+[node name="basic-enemy2" parent="." unique_id=1137367293 instance=ExtResource("2_pyidc")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 1.7674203, 0.90000004, -7.3569474)

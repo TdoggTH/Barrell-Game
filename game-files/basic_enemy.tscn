@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://b1m0h02g35vjy"]
+
+[ext_resource type="Script" uid="uid://bfwbfo5tnipio" path="res://follow_player_behaviour.gd" id="1_naotq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pakj4"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_pakj4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pakj4"]
+size = Vector3(0.49902344, 0.23925781, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pakj4"]
+height = 1.5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_pakj4"]
+height = 1.5
+
+[node name="basic-enemy" type="CharacterBody3D" unique_id=1391856522]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+
+[node name="follow-player-behaviour" type="Node" parent="." unique_id=23366459]
+script = ExtResource("1_naotq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1150510503]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, 0.92236304, 0)
+shape = SubResource("SphereShape3D_pakj4")
+debug_color = Color(3.85046e-07, 0.59540313, 0.72759503, 0.41960785)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=485961010]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+mesh = SubResource("SphereMesh_pakj4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionShape3D" unique_id=149494409]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0.0020781965, 0.09335325, 0.36259118)
+mesh = SubResource("BoxMesh_pakj4")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=376623107]
+shape = SubResource("CapsuleShape3D_pakj4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D2" unique_id=214514516]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_pakj4")
