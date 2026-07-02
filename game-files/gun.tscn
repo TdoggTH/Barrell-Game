@@ -50,5 +50,5 @@ mesh = SubResource("BoxMesh_7pw6a")
 [node name="bullet-position" type="Marker3D" parent="." unique_id=1092734094]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09931931, 0.22757703)
 
-[node name="shooting" type="Node" parent="." unique_id=504607290]
+[node name="shooting" type="Node3D" parent="." unique_id=2041790855]
 script = ExtResource("1_vk1bi")

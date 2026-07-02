@@ -5,11 +5,9 @@ extends Node3D
 func _ready() -> void:
 	reload()
 
-signal shoot
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	var bullet
+func _process(_delta: float) -> void:
 	if Input.is_action_pressed("shoot"):
 		#i just realised that this needs to be a signal, if this continues that means that all the enemies will shoot at the same time as you LOL
 		translate(Vector3(0,0,0))

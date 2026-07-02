@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dl3la0wp7vcuv"]
 
 [ext_resource type="Script" uid="uid://b6u18a0wy2e4q" path="res://player.gd" id="1_xhfnw"]
+[ext_resource type="PackedScene" uid="uid://cssrijsjd66mp" path="res://gun.tscn" id="2_kpjcp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pakj4"]
 
@@ -21,3 +22,6 @@ mesh = SubResource("CapsuleMesh_pakj4")
 
 [node name="Camera3D" type="Camera3D" parent="Marker3D" unique_id=2017626905]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7668872, 0)
+
+[node name="gun" parent="." unique_id=312965893 instance=ExtResource("2_kpjcp")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.45440817, 0.47705764, -0.6026857)
