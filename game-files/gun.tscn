@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cssrijsjd66mp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dncql"]
+albedo_color = Color(0.24405202, 0.24405205, 0.24405202, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r8ywq"]
+material = SubResource("StandardMaterial3D_dncql")
+size = Vector3(0.032, 0.059, 0.115)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1yu6i"]
+albedo_color = Color(0.00039445335, 0.00039445335, 0.00039445335, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vk1bi"]
+material = SubResource("StandardMaterial3D_1yu6i")
+size = Vector3(0.07739258, 0.08850098, 0.33825684)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pakj4"]
+material = SubResource("StandardMaterial3D_1yu6i")
+size = Vector3(0.07739258, 0.08850098, 0.24121094)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2hvgc"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7pw6a"]
+material = SubResource("StandardMaterial3D_2hvgc")
+size = Vector3(0.075, 0.285, 0.3)
+
+[node name="gun" type="Node3D" unique_id=312965893]
+
+[node name="shape" type="Node3D" parent="." unique_id=1280421412]
+
+[node name="trigger" type="MeshInstance3D" parent="shape" unique_id=847657781]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.026928037, -0.038685672)
+mesh = SubResource("BoxMesh_r8ywq")
+
+[node name="barrel" type="MeshInstance3D" parent="shape" unique_id=1032726538]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09871919, 0.054521754)
+mesh = SubResource("BoxMesh_vk1bi")
+
+[node name="handle" type="MeshInstance3D" parent="shape" unique_id=1095972721]
+transform = Transform3D(1, 0, 0, 0, 0.00517469, 0.9999867, 0, -0.9999867, 0.00517469, 0, 0.0022631, -0.10604401)
+mesh = SubResource("BoxMesh_pakj4")
+
+[node name="limit" type="MeshInstance3D" parent="shape" unique_id=336978738]
+mesh = SubResource("BoxMesh_7pw6a")
+
+[node name="bullet-position" type="Marker3D" parent="." unique_id=1092734094]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09931931, 0.22757703)

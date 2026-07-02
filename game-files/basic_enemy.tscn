@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b1m0h02g35vjy"]
 
 [ext_resource type="Script" uid="uid://bfwbfo5tnipio" path="res://follow_player_behaviour.gd" id="1_naotq"]
+[ext_resource type="PackedScene" uid="uid://cssrijsjd66mp" path="res://gun.tscn" id="2_rwafm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pakj4"]
 
@@ -40,3 +41,6 @@ shape = SubResource("CapsuleShape3D_pakj4")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D2" unique_id=214514516]
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_pakj4")
+
+[node name="gun" parent="." unique_id=312965893 instance=ExtResource("2_rwafm")]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0.2236764, 0.2804131, 0.62354094)
