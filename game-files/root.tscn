@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://du7t2tc48rfv"]
 
-[ext_resource type="PackedScene" uid="uid://chmdt3hsowt37" path="res://generic-floor.tscn" id="1_pyidc"]
-[ext_resource type="PackedScene" uid="uid://b1m0h02g35vjy" path="res://basic-enemy.tscn" id="2_pyidc"]
-[ext_resource type="PackedScene" uid="uid://dl3la0wp7vcuv" path="res://Player.tscn" id="3_vvh5c"]
+[ext_resource type="PackedScene" uid="uid://chmdt3hsowt37" path="res://World/generic-floor.tscn" id="1_pyidc"]
+[ext_resource type="PackedScene" uid="uid://b1m0h02g35vjy" path="res://Enemies/basic-enemy.tscn" id="2_pyidc"]
+[ext_resource type="PackedScene" uid="uid://dl3la0wp7vcuv" path="res://Player/Player.tscn" id="3_vvh5c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vvh5c"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -18,25 +18,45 @@ glow_enabled = true
 
 [node name="Main" type="Node3D" unique_id=502212124]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=239596676]
+[node name="Player" parent="." unique_id=50377273 instance=ExtResource("3_vvh5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4820356, 0)
+
+[node name="GUI" type="Control" parent="Player" unique_id=1420588390]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="World" type="Node3D" parent="." unique_id=1156979938]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World" unique_id=239596676]
 environment = SubResource("Environment_jnlp7")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2139727855]
-transform = Transform3D(-0.6525941, 0.16567864, -0.7393727, -0.6987484, -0.50897634, 0.5026865, -0.2930387, 0.8446855, 0.44792265, 0, 0, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World" unique_id=2139727855]
+transform = Transform3D(-0.6525941, 0.16567864, -0.7393725, -0.6987484, -0.5089764, 0.50268656, -0.2930387, 0.84468555, 0.44792265, 0, 0, 0)
 shadow_enabled = true
 
-[node name="ground" parent="." unique_id=37099076 instance=ExtResource("1_pyidc")]
+[node name="Enemies" type="Node3D" parent="World" unique_id=1308334295]
+
+[node name="basic-enemy3" parent="World/Enemies" unique_id=1391856522 instance=ExtResource("2_pyidc")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -2.0685086, 0.90000004, -7.269794)
+
+[node name="basic-enemy" parent="World/Enemies" unique_id=362026838 instance=ExtResource("2_pyidc")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.19171667, 0.90000004, -7.358869)
+
+[node name="basic-enemy2" parent="World/Enemies" unique_id=1137367293 instance=ExtResource("2_pyidc")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 1.7674203, 0.90000004, -7.3569474)
+
+[node name="LevelDesign" type="Node3D" parent="World" unique_id=1666064898]
+
+[node name="ground" parent="World/LevelDesign" unique_id=37099076 instance=ExtResource("1_pyidc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 metadata/_edit_lock_ = true
 
-[node name="basic-enemy3" parent="." unique_id=1391856522 instance=ExtResource("2_pyidc")]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -2.0685086, 0.90000004, -7.269794)
+[node name="Entities" type="Node3D" parent="World" unique_id=1141825041]
 
-[node name="basic-enemy" parent="." unique_id=362026838 instance=ExtResource("2_pyidc")]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.19171667, 0.90000004, -7.358869)
-
-[node name="basic-enemy2" parent="." unique_id=1137367293 instance=ExtResource("2_pyidc")]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 1.7674203, 0.90000004, -7.3569474)
-
-[node name="Player" parent="." unique_id=50377273 instance=ExtResource("3_vvh5c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4820356, 0)
+[node name="Menu" type="Control" parent="." unique_id=1887474672]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
