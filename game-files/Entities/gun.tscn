@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cssrijsjd66mp"]
 
 [ext_resource type="Script" uid="uid://c4yefgu2qku35" path="res://Entities/gun.gd" id="1_vk1bi"]
+[ext_resource type="Script" uid="uid://c73iu0rvjlejs" path="res://Entities/shooting.gd" id="2_c8w1f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dncql"]
 albedo_color = Color(0.24405202, 0.24405205, 0.24405202, 1)
@@ -28,7 +29,13 @@ albedo_color = Color(1, 1, 1, 0)
 material = SubResource("StandardMaterial3D_2hvgc")
 size = Vector3(0.075, 0.285, 0.3)
 
-[node name="gun" type="Node3D" unique_id=312965893]
+[node name="gun" type="Node3D" unique_id=312965893 node_paths=PackedStringArray("shooting", "shootingTimer")]
+script = ExtResource("1_vk1bi")
+shooting = NodePath("shooting")
+shootingTimer = NodePath("shooting-timer")
+magazineSize = 7
+fireRate = 60
+damage = 10
 
 [node name="shape" type="Node3D" parent="." unique_id=1280421412]
 
@@ -51,4 +58,7 @@ mesh = SubResource("BoxMesh_7pw6a")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09931931, 0.22757703)
 
 [node name="shooting" type="Node3D" parent="." unique_id=2041790855]
-script = ExtResource("1_vk1bi")
+script = ExtResource("2_c8w1f")
+
+[node name="shooting-timer" type="Timer" parent="." unique_id=217150568]
+one_shot = true

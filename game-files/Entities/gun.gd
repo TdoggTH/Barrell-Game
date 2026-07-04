@@ -1,20 +1,37 @@
 extends Node3D
 
+@export var shooting: Node3D
+@export var shootingTimer: Timer
+
+#How big the gun's mag size is
+@export var magazineSize: int
+
+#How many bullets the gun shoots per minute
+@export var fireRate: int
+
+@export var damage: int
+
+signal shot_someone(damage: int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	reload()
 
+	shooting.magazineSize = magazineSize
+
+	var shotsPerSecond: int = fireRate / 60
+
+	shootingTimer.wait_time = shotsPerSecond
+	shootingTimer.stop()
+
+	#reloads the weapon according to the specified previously specified initialisations
+	shooting.reload()
+
+func shoot():
+	if shootingTimer.is_stopped() == true:
+		if shooting.shoot():
+			emit_signal("shot_someone", damage)
+		shootingTimer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_action_pressed("shoot"):
-		#i just realised that this needs to be a signal, if this continues that means that all the enemies will shoot at the same time as you LOL
-		translate(Vector3(0,0,0))
-	if Input.is_action_pressed("reload"):
-		#might need to check if reloading is neccessary, like a if ammo != max_ammo
-		reload()
-
-## Reload function spawns all the bullets in the magazine in an invisible state ready to be used
-func reload():
 	pass
