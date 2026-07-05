@@ -1,15 +1,24 @@
 extends CharacterBody3D
 
+
 # How fast the player moves in meters per second.
 @export var speed = 14
 # The downward acceleration when in the air, in meters per second squared.
 @export var fall_acceleration = 75
+@export var mouse_sensitivity = 0.002
+@export var max_pitch = deg_to_rad(80)
+@export var min_pitch = deg_to_rad(-80)
 
-var target_velocity = Vector3.ZERO
+var target_velocity
+var camera3D
+var rotation_helper
+
+func _ready():
+	target_velocity = Vector3.ZERO
+	camera3D = Camera3D.new()
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta):
-
-
 
 	# We create a local variable to store the input direction.
 	var direction = Vector3.ZERO
@@ -34,9 +43,33 @@ func _physics_process(delta):
 	target_velocity.z = direction.z * speed
 
 	# Vertical Velocity
+	if Input.is_action_pressed("jump") and is_on_floor():
+		target_velocity.y += 50 
+
 	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
 		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
 
 	# Moving the Character
 	velocity = target_velocity
 	move_and_slide()
+
+func _input(event):
+	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY))
+		self.rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
+
+		var camera_rot = rotation_helper.rotation_degrees
+		camera_rot.x = clamp(camera_rot.x, -70, 70)
+		rotation_helper.rotation_degrees = camera_rot
+
+#func _input(event):
+	#if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		# Rotate the player horizontally (Y axis)
+		#camera3D.rotate_y(-event.relative.x * mouse_sensitivity)
+		
+		# Rotate the camera pivot vertically (X axis)
+		#camera3D.rotate_x(-event.relative.y * mouse_sensitivity)
+		
+		# Clamp the vertical pitch to prevent the camera from flipping over
+		#rotation.x = clamp(camera3D.rotation.x, min_pitch, max_pitch)
+		

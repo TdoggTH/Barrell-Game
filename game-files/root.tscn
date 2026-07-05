@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://chmdt3hsowt37" path="res://World/generic-floor.tscn" id="1_pyidc"]
 [ext_resource type="PackedScene" uid="uid://b1m0h02g35vjy" path="res://Enemies/basic-enemy.tscn" id="2_pyidc"]
 [ext_resource type="PackedScene" uid="uid://dl3la0wp7vcuv" path="res://Player/Player.tscn" id="3_vvh5c"]
+[ext_resource type="Script" uid="uid://dy6tplkmye4xy" path="res://menu.gd" id="4_28aoi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vvh5c"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -60,3 +61,4 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("4_28aoi")
