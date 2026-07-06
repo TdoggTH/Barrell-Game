@@ -9,20 +9,23 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_pakj4"]
 
-[node name="Player" type="CharacterBody3D" unique_id=50377273]
+[node name="Player" type="CharacterBody3D" unique_id=50377273 node_paths=PackedStringArray("camdirection")]
 script = ExtResource("1_xhfnw")
+camdirection = NodePath("Camera Controller")
 
-[node name="gun" parent="." unique_id=312965893 instance=ExtResource("2_kpjcp")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.45440817, 0.47705764, -0.6026857)
-
-[node name="Camera Controller" type="Node3D" parent="." unique_id=709638813]
+[node name="Camera Controller" type="Node3D" parent="." unique_id=709638813 node_paths=PackedStringArray("marker")]
 script = ExtResource("3_ddoul")
+marker = NodePath("Marker3D")
 
 [node name="Marker3D" type="Marker3D" parent="Camera Controller" unique_id=287571120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Camera Controller/Marker3D" unique_id=2017626905]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7668872, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0668872, 0)
 script = ExtResource("2_tok1r")
+
+[node name="gun" parent="Camera Controller/Marker3D" unique_id=312965893 instance=ExtResource("2_kpjcp")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.45440817, -0.22294235, -0.6026857)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=546207268]
 shape = SubResource("CapsuleShape3D_pakj4")

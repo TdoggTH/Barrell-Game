@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+@export var camdirection : Node3D
 
 # How fast the player moves in meters per second.
 @export var speed = 14
@@ -15,13 +16,11 @@ var rotation_helper
 
 func _ready():
 	target_velocity = Vector3.ZERO
-	camera3D = Camera3D.new()
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta):
 
 	# We create a local variable to store the input direction.
-	var direction = Vector3.ZERO
+	var direction = Vector3.ZERO 
 
 	# We check for each move input and update the direction accordingly.
 	if Input.is_action_pressed("move_right"):
@@ -33,7 +32,9 @@ func _physics_process(delta):
 		# In 3D, the XZ plane is the ground plane.
 		direction.z += 1
 	if Input.is_action_pressed("move_forward"):
-		direction.z -= 1
+		direction.z -= 1 
+		
+	#direction = (direction + camdirection.crotation)
 
 			# Ground Velocity
 	target_velocity.x = direction.x * speed
@@ -49,24 +50,3 @@ func _physics_process(delta):
 	# Moving the Character
 	velocity = target_velocity
 	move_and_slide()
-
-#func _input(event):
-	#if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		#rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY))
-		#self.rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
-
-		#var camera_rot = rotation_helper.rotation_degrees
-		#camera_rot.x = clamp(camera_rot.x, -70, 70)
-		#rotation_helper.rotation_degrees = camera_rot
-
-#func _input(event):
-	#if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		# Rotate the player horizontally (Y axis)
-		#camera3D.rotate_y(-event.relative.x * mouse_sensitivity)
-		
-		# Rotate the camera pivot vertically (X axis)
-		#camera3D.rotate_x(-event.relative.y * mouse_sensitivity)
-		
-		# Clamp the vertical pitch to prevent the camera from flipping over
-		#rotation.x = clamp(camera3D.rotation.x, min_pitch, max_pitch)
-		
