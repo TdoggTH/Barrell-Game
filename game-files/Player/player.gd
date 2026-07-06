@@ -34,9 +34,6 @@ func _physics_process(delta):
 		direction.z += 1
 	if Input.is_action_pressed("move_forward"):
 		direction.z -= 1
-	if direction != Vector3.ZERO:
-		direction = direction.normalized()
-		# Setting the basis property will affect the rotation of the node.
 
 			# Ground Velocity
 	target_velocity.x = direction.x * speed
@@ -53,14 +50,14 @@ func _physics_process(delta):
 	velocity = target_velocity
 	move_and_slide()
 
-func _input(event):
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY))
-		self.rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
+#func _input(event):
+	#if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		#rotation_helper.rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY))
+		#self.rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
 
-		var camera_rot = rotation_helper.rotation_degrees
-		camera_rot.x = clamp(camera_rot.x, -70, 70)
-		rotation_helper.rotation_degrees = camera_rot
+		#var camera_rot = rotation_helper.rotation_degrees
+		#camera_rot.x = clamp(camera_rot.x, -70, 70)
+		#rotation_helper.rotation_degrees = camera_rot
 
 #func _input(event):
 	#if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
