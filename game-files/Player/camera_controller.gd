@@ -1,6 +1,6 @@
 extends Node3D
 
-var mouse_sensitivity : float = 0.05
+var mouse_sensitivity : float = 0.01
 var capture_mouse : bool
 var mouse_input : Vector2
 var crotation : Vector3
@@ -19,8 +19,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	mouse_input = Vector2.ZERO
 	update_camera_rotation(mouse_input)
+	mouse_input = Vector2.ZERO
 
 func update_camera_rotation(input: Vector2) -> void:
 	crotation.x += input.y
