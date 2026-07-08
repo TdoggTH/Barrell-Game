@@ -47,3 +47,8 @@ func _physics_process(delta):
 	# Moving the Character
 	velocity = target_velocity
 	move_and_slide()
+
+	if Input.is_action_pressed("shoot"):
+		gun.shoot()
+	if Input.is_action_pressed("reload"):
+		gun.reload()

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cssrijsjd66mp"]
 
-[ext_resource type="Script" uid="uid://c4yefgu2qku35" path="res://Entities/gun.gd" id="1_vk1bi"]
-[ext_resource type="Script" uid="uid://c73iu0rvjlejs" path="res://Entities/shooting.gd" id="2_c8w1f"]
+[ext_resource type="Script" uid="uid://c4yefgu2qku35" path="res://Entities/Gun.gd" id="1_wcyxf"]
+[ext_resource type="Script" uid="uid://c73iu0rvjlejs" path="res://Entities/Shooting.gd" id="2_wcyxf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dncql"]
 albedo_color = Color(0.24405202, 0.24405205, 0.24405202, 1)
@@ -29,36 +29,54 @@ albedo_color = Color(1, 1, 1, 0)
 material = SubResource("StandardMaterial3D_2hvgc")
 size = Vector3(0.075, 0.285, 0.3)
 
-[node name="gun" type="Node3D" unique_id=312965893 node_paths=PackedStringArray("shooting", "shootingTimer")]
-script = ExtResource("1_vk1bi")
-shooting = NodePath("shooting")
-shootingTimer = NodePath("shooting-timer")
+[node name="Gun" type="Node3D" unique_id=312965893 node_paths=PackedStringArray("shooting", "shootingTimer", "reloadTimer", "ammoCounter")]
+script = ExtResource("1_wcyxf")
+shooting = NodePath("Shooting")
+shootingTimer = NodePath("ShootingTimer")
+reloadTimer = NodePath("ReloadTimer")
+ammoCounter = NodePath("AmmoCounter")
 magazineSize = 7
 fireRate = 60
 damage = 10
 
-[node name="shape" type="Node3D" parent="." unique_id=1280421412]
+[node name="Shape" type="Node3D" parent="." unique_id=1280421412]
 
-[node name="trigger" type="MeshInstance3D" parent="shape" unique_id=847657781]
+[node name="Trigger" type="MeshInstance3D" parent="Shape" unique_id=847657781]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.026928037, -0.038685672)
 mesh = SubResource("BoxMesh_r8ywq")
 
-[node name="barrel" type="MeshInstance3D" parent="shape" unique_id=1032726538]
+[node name="Barrel" type="MeshInstance3D" parent="Shape" unique_id=1032726538]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09871919, 0.054521754)
 mesh = SubResource("BoxMesh_vk1bi")
 
-[node name="handle" type="MeshInstance3D" parent="shape" unique_id=1095972721]
+[node name="Handle" type="MeshInstance3D" parent="Shape" unique_id=1095972721]
 transform = Transform3D(1, 0, 0, 0, 0.00517469, 0.9999867, 0, -0.9999867, 0.00517469, 0, 0.0022631, -0.10604401)
 mesh = SubResource("BoxMesh_pakj4")
 
-[node name="limit" type="MeshInstance3D" parent="shape" unique_id=336978738]
+[node name="Limit" type="MeshInstance3D" parent="Shape" unique_id=336978738]
 mesh = SubResource("BoxMesh_7pw6a")
 
-[node name="bullet-position" type="Marker3D" parent="." unique_id=1092734094]
+[node name="Shooting" type="Node3D" parent="." unique_id=2041790855 node_paths=PackedStringArray("shot")]
+script = ExtResource("2_wcyxf")
+shot = NodePath("RayCast3D")
+
+[node name="BulletPosition" type="Marker3D" parent="Shooting" unique_id=1092734094]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09931931, 0.22757703)
 
-[node name="shooting" type="Node3D" parent="." unique_id=2041790855]
-script = ExtResource("2_c8w1f")
+[node name="RayCast3D" type="RayCast3D" parent="Shooting" unique_id=786059274]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09931931, 0.22757703)
+target_position = Vector3(0, 0, 30)
 
-[node name="shooting-timer" type="Timer" parent="." unique_id=217150568]
+[node name="ShootingTimer" type="Timer" parent="." unique_id=217150568]
+wait_time = 0.5
 one_shot = true
+
+[node name="ReloadTimer" type="Timer" parent="." unique_id=43789963]
+wait_time = 0.7
+one_shot = true
+
+[node name="AmmoCounter" type="Label3D" parent="." unique_id=1305123187]
+transform = Transform3D(-1.0000001, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1.0000001, 0.142629, 0.109928034, -0.01999931)
+text = "1"
+
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
