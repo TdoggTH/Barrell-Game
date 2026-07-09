@@ -19,8 +19,9 @@ glow_enabled = true
 
 [node name="Main" type="Node3D" unique_id=502212124]
 
-[node name="Player" parent="." unique_id=50377273 instance=ExtResource("3_vvh5c")]
+[node name="Player" parent="." unique_id=50377273 node_paths=PackedStringArray("cameraPosY") instance=ExtResource("3_vvh5c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4820356, 0)
+cameraPosY = NodePath(".")
 
 [node name="GUI" type="Control" parent="Player" unique_id=1420588390]
 layout_mode = 3

@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var camdirection : Node3D
+@export var cameraPosY : Node3D
 
 # How fast the player moves in meters per second.
 @export var speed = 14
@@ -13,14 +13,21 @@ extends CharacterBody3D
 var target_velocity
 var camera3D
 var rotation_helper
+var cameraDir : Vector2
 
 func _ready():
 	target_velocity = Vector3.ZERO
+	$CameraController.connect("currentYCameraRotationV2", _GetCameraPostition)
 
-func _physics_process(delta):
+func _GetCameraPostition(asdf, qwer) -> Vector2:
+	cameraDir = Vector2(asdf, qwer)
+	return(cameraDir)
+
+func _physics_process(delta : float): 
 
 	# We create a local variable to store the input direction.
 	var direction = Vector3.ZERO 
+
 
 	# We check for each move input and update the direction accordingly.
 	if Input.is_action_pressed("move_right"):
@@ -40,7 +47,7 @@ func _physics_process(delta):
 	target_velocity.x = direction.x * speed
 	target_velocity.z = direction.z * speed
 
-	# Vertical Velocity
+	 #Vertical Velocity
 	if Input.is_action_pressed("jump") and is_on_floor():
 		target_velocity.y += 50 
 
