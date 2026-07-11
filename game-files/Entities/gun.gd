@@ -39,13 +39,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	ammoCounter.text = String.num_int64(currentMag)
 
-func shoot():
+func shoot(gunRange: RayCast3D):
 	if shootingTimer.is_stopped() and currentMag > 0 and reloadTimer.time_left == 0:
 		currentMag -= 1
 
-		print(currentMag)
-		if shooting.shoot():
-			emit_signal("shot_someone", damage)
+		var target = shooting.shoot(gunRange)
+		if target:
+			print("Gun: i shot ", target)
+			#target.hit(damage) #rejig this in the enemy branch
 		shootingTimer.start()
 
 func reload() -> void:

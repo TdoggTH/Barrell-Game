@@ -3,20 +3,17 @@ extends Node3D
 var magazineSize: int
 var fireRate: int
 
-
 @export var shot: RayCast3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print()
 
-func shoot() -> CharacterBody3D:
-	#Create a ray that comes from a variable(? not created yet) and if the ray intersects with an enemy, return true so the parent method can determine the amount of damage done
-	#return false if no intersection
-	print("shooting from shooting.gd")
-	var hit = shot.get_collider()
-	if hit:
-		print("i hit ", hit)
+func shoot(gunRange: RayCast3D) -> CharacterBody3D:
+	#Use the passed ray to shoot and find any intersections
+	#returns the target hit if there is an object in the intersection
+	#returns null if there is nothing in the raycast
+	var hit = gunRange.get_collider()
 	return hit
 	#if hit:
 		#hit.
