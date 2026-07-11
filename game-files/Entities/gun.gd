@@ -15,8 +15,6 @@ var currentMag: int
 
 @export var damage: int
 
-signal shot_someone(damage: int)
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 
@@ -28,7 +26,7 @@ func _ready() -> void:
 	print(shooting.magazineSize)
 
 	#Should have this inside of Shooting node, but because we only have 1 gun it gets a pass
-	var shotsPerSecond: int = fireRate / 60
+	var shotsPerSecond: int = floor(fireRate / 60)
 
 	shootingTimer.wait_time = shotsPerSecond
 	shootingTimer.stop()
@@ -36,7 +34,7 @@ func _ready() -> void:
 	#reloads the weapon according to the specified previously specified initialisations
 	shooting.reload()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	ammoCounter.text = String.num_int64(currentMag)
 
 func shoot(gunRange: RayCast3D):
@@ -45,12 +43,13 @@ func shoot(gunRange: RayCast3D):
 
 		var target = shooting.shoot(gunRange)
 		if target:
-			print("Gun: i shot ", target)
-			#target.hit(damage) #rejig this in the enemy branch
+			print("Gun: shooting ", target)
+			target.health.take_damage(damage)
 		shootingTimer.start()
 
 func reload() -> void:
-	reloadTimer.start()
+	if reloadTimer.is_stopped():
+		reloadTimer.start()
 
 
 func _on_reload_timer_timeout() -> void:

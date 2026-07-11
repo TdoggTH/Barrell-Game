@@ -5,6 +5,8 @@ extends CharacterBody3D
 # The downward acceleration when in the air, in meters per second squared.
 @export var fall_acceleration = 75
 
+@export var health: Node3D
+
 @export var gun: Node3D
 @export var gunRange: RayCast3D
 
@@ -46,3 +48,7 @@ func _physics_process(delta):
 		gun.shoot(gunRange)
 	if Input.is_action_pressed("reload"):
 		gun.reload()
+
+
+func die() -> void:
+	pass

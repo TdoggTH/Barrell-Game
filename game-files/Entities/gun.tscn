@@ -56,9 +56,8 @@ mesh = SubResource("BoxMesh_pakj4")
 [node name="Limit" type="MeshInstance3D" parent="Shape" unique_id=336978738]
 mesh = SubResource("BoxMesh_7pw6a")
 
-[node name="Shooting" type="Node3D" parent="." unique_id=2041790855 node_paths=PackedStringArray("shot")]
+[node name="Shooting" type="Node3D" parent="." unique_id=2041790855]
 script = ExtResource("2_wcyxf")
-shot = NodePath("")
 
 [node name="BulletPosition" type="Marker3D" parent="Shooting" unique_id=1092734094]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09931931, 0.22757703)
