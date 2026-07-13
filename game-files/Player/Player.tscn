@@ -9,18 +9,13 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_pakj4"]
 
-[node name="Player" type="CharacterBody3D" unique_id=50377273 node_paths=PackedStringArray("cameraPosY")]
+[node name="Player" type="CharacterBody3D" unique_id=50377273 node_paths=PackedStringArray("cameracontroller")]
 script = ExtResource("1_xhfnw")
-cameraPosY = NodePath("CameraController")
-speed = null
-fall_acceleration = null
-mouse_sensitivity = null
-max_pitch = null
-min_pitch = null
+cameracontroller = NodePath("CameraController")
 
-[node name="CameraController" type="Node3D" parent="." unique_id=709638813 node_paths=PackedStringArray("marker")]
+[node name="CameraController" type="Node3D" parent="." unique_id=709638813 node_paths=PackedStringArray("cameraController")]
 script = ExtResource("3_ddoul")
-marker = NodePath("Marker3D")
+cameraController = NodePath(".")
 
 [node name="Marker3D" type="Marker3D" parent="CameraController" unique_id=287571120]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
