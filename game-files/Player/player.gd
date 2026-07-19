@@ -20,28 +20,28 @@ func _physics_process(delta : float):
 		velocity += get_gravity() * delta
 
 	# Get camera rotation for the direction later
-	var camera_basis = cameracontroller.global_transform.basis
+	var camera_basis = cameracontroller.player_rotation_right
 	var forward = camera_basis.z
 	var right = camera_basis.x
 
-	print(cameracontroller.global_transform.basis)
+	#print(cameracontroller.global_transform.basis)
 
-	print(Basis(right.normalized(), Vector3(0, 1, 0), forward.normalized()))
+	#print(Basis(right.normalized(), Vector3(0, 1, 0), forward.normalized()))
 
 	forward.y = 0
 	right.y = 0
 
+	transform.basis = camera_basis
 
 
-
-	print(Basis(right.normalized(), Vector3(0, 1, 0), forward.normalized()))
+	#print(Basis(right.normalized(), Vector3(0, 1, 0), forward.normalized()))
 
 	# Get direction and adjust to where camera is facing
 	inputDir = Input.get_vector(
 		"move_left", "move_right",
 		"move_forward", "move_back")
 	var direction = (
-		Basis(right.normalized(), Vector3(0, 1, 0), forward.normalized())
+		camera_basis
 		* Vector3(inputDir.x, 0 , inputDir.y)
 		).normalized()
 
