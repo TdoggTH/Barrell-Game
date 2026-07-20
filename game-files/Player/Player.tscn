@@ -2,15 +2,21 @@
 
 [ext_resource type="Script" uid="uid://p8kfdkuewhwg" path="res://Player/player.gd" id="1_xhfnw"]
 [ext_resource type="PackedScene" uid="uid://cssrijsjd66mp" path="res://Entities/gun.tscn" id="2_kpjcp"]
+[ext_resource type="PackedScene" uid="uid://d0sy44lkb48tj" path="res://Global Mechanics/health.tscn" id="2_tok1r"]
 [ext_resource type="Script" uid="uid://bgfuw087mkd5r" path="res://Player/camera_controller.gd" id="3_ddoul"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_pakj4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pakj4"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_pakj4"]
 
-[node name="Player" type="CharacterBody3D" unique_id=50377273 node_paths=PackedStringArray("cameracontroller")]
+[node name="Player" type="CharacterBody3D" unique_id=50377273 node_paths=PackedStringArray("cameracontroller", "health", "gun", "gunRange")]
 script = ExtResource("1_xhfnw")
 cameracontroller = NodePath("CameraController")
+health = NodePath("Health")
+gun = NodePath("CameraController/Gun")
+gunRange = NodePath("CameraController/Marker3D/GunRange")
 
 [node name="CameraController" type="Node3D" parent="." unique_id=709638813 node_paths=PackedStringArray("cameraController")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6219666, 0)
@@ -18,11 +24,25 @@ script = ExtResource("3_ddoul")
 cameraController = NodePath(".")
 
 [node name="Marker3D" type="Marker3D" parent="CameraController" unique_id=287571120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14511985, -0.3071597)
 
-[node name="Camera3D" type="Camera3D" parent="CameraController/Marker3D" unique_id=2017626905]
+[node name="GunRange" type="RayCast3D" parent="CameraController/Marker3D" unique_id=1381235259]
+target_position = Vector3(0, 0, -30)
+debug_shape_thickness = 5
 
-[node name="gun" parent="CameraController/Marker3D" unique_id=312965893 instance=ExtResource("2_kpjcp")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.45440817, -0.22294235, -0.6026857)
+[node name="Crosshair" type="Sprite3D" parent="CameraController/Marker3D" unique_id=2013968633]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15484488)
+texture = SubResource("CanvasTexture_pakj4")
+
+[node name="Camera3D" type="Camera3D" parent="CameraController" unique_id=2017626905]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14511985, 0.013517946)
+
+[node name="Gun" parent="CameraController" unique_id=1576216207 instance=ExtResource("2_kpjcp")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.45440817, -0.14490896, -0.6026857)
+
+[node name="Health" parent="." unique_id=1843821648 node_paths=PackedStringArray("character") instance=ExtResource("2_tok1r")]
+character = NodePath("..")
+maxHealthPoints = 60
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=546207268]
 shape = SubResource("CapsuleShape3D_pakj4")

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://d0sy44lkb48tj"]
+
+[ext_resource type="Script" uid="uid://cnedrgorqj5w0" path="res://Global Mechanics/health.gd" id="1_l1egy"]
+
+[node name="Health" type="Node3D" unique_id=1843821648 node_paths=PackedStringArray("character")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+script = ExtResource("1_l1egy")
+character = NodePath("")
+maxHealthPoints = 30

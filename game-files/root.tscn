@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://du7t2tc48rfv"]
 
-[ext_resource type="PackedScene" uid="uid://chmdt3hsowt37" path="res://World/generic-floor.tscn" id="1_pyidc"]
-[ext_resource type="PackedScene" uid="uid://b1m0h02g35vjy" path="res://Enemies/basic-enemy.tscn" id="2_pyidc"]
+[ext_resource type="PackedScene" uid="uid://b1m0h02g35vjy" path="res://Enemies/BasicEnemy.tscn" id="2_cwqeq"]
+[ext_resource type="PackedScene" uid="uid://chmdt3hsowt37" path="res://World/GenericFloor.tscn" id="3_3ipfy"]
 [ext_resource type="PackedScene" uid="uid://dl3la0wp7vcuv" path="res://Player/Player.tscn" id="3_vvh5c"]
 [ext_resource type="Script" uid="uid://dy6tplkmye4xy" path="res://menu.gd" id="4_28aoi"]
 
@@ -39,18 +39,18 @@ shadow_enabled = true
 
 [node name="Enemies" type="Node3D" parent="World" unique_id=1308334295]
 
-[node name="basic-enemy3" parent="World/Enemies" unique_id=1391856522 instance=ExtResource("2_pyidc")]
+[node name="basic-enemy3" parent="World/Enemies" unique_id=1391856522 instance=ExtResource("2_cwqeq")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -2.0685086, 0.90000004, -7.269794)
 
-[node name="basic-enemy" parent="World/Enemies" unique_id=362026838 instance=ExtResource("2_pyidc")]
+[node name="basic-enemy" parent="World/Enemies" unique_id=362026838 instance=ExtResource("2_cwqeq")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.19171667, 0.90000004, -7.358869)
 
-[node name="basic-enemy2" parent="World/Enemies" unique_id=1137367293 instance=ExtResource("2_pyidc")]
+[node name="basic-enemy2" parent="World/Enemies" unique_id=1137367293 instance=ExtResource("2_cwqeq")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 1.7674203, 0.90000004, -7.3569474)
 
 [node name="LevelDesign" type="Node3D" parent="World" unique_id=1666064898]
 
-[node name="ground" parent="World/LevelDesign" unique_id=37099076 instance=ExtResource("1_pyidc")]
+[node name="ground" parent="World/LevelDesign" unique_id=37099076 instance=ExtResource("3_3ipfy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 metadata/_edit_lock_ = true
 

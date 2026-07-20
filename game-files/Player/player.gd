@@ -9,8 +9,15 @@ extends CharacterBody3D
 var acceleration = 0.2
 var decceleration = 0.2
 
+
 var inputDir : Vector2 = Vector2.ZERO
 var target_velocity
+
+@export var health: Node3D
+
+@export var gun: Node3D
+@export var gunRange: RayCast3D
+
 
 func _ready():
 	target_velocity = Vector3.ZERO
@@ -57,3 +64,12 @@ func _physics_process(delta : float):
 
 	velocity = target_velocity
 	move_and_slide()
+
+	if Input.is_action_pressed("shoot"):
+		gun.shoot(gunRange)
+	if Input.is_action_pressed("reload"):
+		gun.reload()
+
+
+func die() -> void:
+	pass
