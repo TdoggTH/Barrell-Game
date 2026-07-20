@@ -24,17 +24,10 @@ func _physics_process(delta : float):
 	var forward = camera_basis.z
 	var right = camera_basis.x
 
-	#print(cameracontroller.global_transform.basis)
-
-	#print(Basis(right.normalized(), Vector3(0, 1, 0), forward.normalized()))
-
 	forward.y = 0
 	right.y = 0
 
 	transform.basis = camera_basis
-
-
-	#print(Basis(right.normalized(), Vector3(0, 1, 0), forward.normalized()))
 
 	# Get direction and adjust to where camera is facing
 	inputDir = Input.get_vector(
