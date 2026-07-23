@@ -2,10 +2,12 @@ extends Node3D
 
 @export var cameraController : Node3D
 
-var mouse_sensitivity : float = 0.01
+var mouse_sensitivity : float = 0.001
 var capture_mouse : bool
 var mouse_input : Vector2
 var crotation : Vector3
+var player_rotation
+var player_rotation_right = Vector3.ZERO
 
 func _unhandled_input(event: InputEvent) -> void:
 	capture_mouse = event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
@@ -18,7 +20,6 @@ func _unhandled_input(event: InputEvent) -> void:
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	mouse_input = Vector2.ZERO
@@ -29,5 +30,14 @@ func update_camera_rotationx(input: Vector2) -> void:
 	crotation.y += input.x
 	crotation.x = clamp(crotation.x, deg_to_rad(-60), deg_to_rad(60))
 
-	var player_rotation = Vector3(crotation.x, crotation.y, 0.0)
+	player_rotation = Vector3(crotation.x, 0.0, 0.0)
+	player_rotation_right = Vector3(0.0, crotation.y, 0.0)
+	#var ccy = self.transform.basis.y
+	#var ccx = self.transform.basis.x
+	
+	#ccy.x = 0
+	#ccx.x = 0
 	cameraController.transform.basis = Basis.from_euler(player_rotation)
+
+	#cameraController.transform.basis = Basis.from_euler(player_rotation_right)
+	#print(player_rotation)

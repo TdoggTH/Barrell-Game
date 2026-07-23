@@ -8,9 +8,37 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_pakj4"]
 
-[node name="Player" type="CharacterBody3D" unique_id=50377273 node_paths=PackedStringArray("cameracontroller")]
+[sub_resource type="Animation" id="Animation_ddoul"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraController/Marker3D/gun")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.99999994, 0, -4.3711392e-08)
+
+[sub_resource type="Animation" id="Animation_tok1r"]
+resource_name = "shoot"
+length = 0.3
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraController/Marker3D/gun")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.99999994, 0, -4.3711392e-08, 0.1, 1, -1.0790442e-08, 0.969052, 0.24685645, -4.2358607e-08, 0.26666668, 1, 0, 0.99999994, 0, 4.3711385e-08)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ddoul"]
+_data = {
+&"RESET": SubResource("Animation_ddoul"),
+&"shoot": SubResource("Animation_tok1r")
+}
+
+[node name="Player" type="CharacterBody3D" unique_id=50377273 node_paths=PackedStringArray("cameracontroller", "PlayerModel")]
 script = ExtResource("1_xhfnw")
 cameracontroller = NodePath("CameraController")
+PlayerModel = NodePath("PlayerModel")
 
 [node name="CameraController" type="Node3D" parent="." unique_id=709638813 node_paths=PackedStringArray("cameraController")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6219666, 0)
@@ -22,10 +50,14 @@ cameraController = NodePath(".")
 [node name="Camera3D" type="Camera3D" parent="CameraController/Marker3D" unique_id=2017626905]
 
 [node name="gun" parent="CameraController/Marker3D" unique_id=312965893 instance=ExtResource("2_kpjcp")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.45440817, -0.22294235, -0.6026857)
+transform = Transform3D(-1.0000001, 0, -1.5099575e-07, 0, 0.99999964, 0, 1.5099582e-07, 0, -0.99999964, 0.45440817, -0.22294235, -0.6026857)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=546207268]
+[node name="PlayerModel" type="CollisionShape3D" parent="." unique_id=546207268]
 shape = SubResource("CapsuleShape3D_pakj4")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1875733268]
+[node name="PlayerMesh" type="MeshInstance3D" parent="PlayerModel" unique_id=1875733268]
+transform = Transform3D(0.9998714, 0, -0.016037723, 0, 1, 0, 0.016037723, 0, 0.9998714, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_pakj4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=373446364]
+libraries/ = SubResource("AnimationLibrary_ddoul")
