@@ -43,14 +43,11 @@ func _physics_process(delta : float):
 		target_velocity.y = 0.0
 		
 	# Get camera rotation for the direction later
-	var camera_basis = cameracontroller.global_transform.basis
+	var camera_basis = cameracontroller.player_rotation_right
 	var forward = camera_basis.z
 	var right = camera_basis.x
 
-	#print(cameracontroller.global_transform.basis)
-	camAngleYaw = forward.y
-	#print(Basis(right.normalized(), Vector3(0, 1, 0), forward.normalized()))
-	
+
 	forward.y = 0
 	right.y = 0
 	 #set CameraController Angle y
@@ -60,19 +57,18 @@ func _physics_process(delta : float):
 	#print(transform.basis)
 	
 
-	#print(Basis(right.normalized(), Vector3(0, 1, 0), forward.normalized()))
+
+	transform.basis = camera_basis
 
 	# Get direction and adjust to where camera is facing
-	inputDir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	
-	#print(cameracontroller.player_rotation_right)
-	#transform.basis = Basis.from_euler(cameracontroller.player_rotation_right)
-	target_angle = (cameracontroller.player_rotation_right)
-	#print(target_angle)
-	transform.basis = Basis.from_euler(target_angle)
-	
-	
-	var direction = (Basis(right.normalized(), Vector3(0, 1, 0), forward.normalized())* Vector3(inputDir.x, 0 , inputDir.y)).normalized()
+	inputDir = Input.get_vector(
+		"move_left", "move_right",
+		"move_forward", "move_back")
+	var direction = (
+		camera_basis
+		* Vector3(inputDir.x, 0 , inputDir.y)
+		).normalized()
+
 
 	var currentV = Vector2(target_velocity.x, target_velocity.z)
 

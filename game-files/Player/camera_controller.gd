@@ -9,6 +9,8 @@ var crotation : Vector3
 var player_rotation
 var player_rotation_right = Vector3.ZERO
 
+var player_rotation_right : Basis
+
 func _unhandled_input(event: InputEvent) -> void:
 	capture_mouse = event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
 	if capture_mouse:
@@ -30,14 +32,16 @@ func update_camera_rotationx(input: Vector2) -> void:
 	crotation.y += input.x
 	crotation.x = clamp(crotation.x, deg_to_rad(-60), deg_to_rad(60))
 
-	player_rotation = Vector3(crotation.x, 0.0, 0.0)
-	player_rotation_right = Vector3(0.0, crotation.y, 0.0)
-	#var ccy = self.transform.basis.y
-	#var ccx = self.transform.basis.x
-	
-	#ccy.x = 0
-	#ccx.x = 0
-	cameraController.transform.basis = Basis.from_euler(player_rotation)
 
-	#cameraController.transform.basis = Basis.from_euler(player_rotation_right)
-	#print(player_rotation)
+	var player_rotation_up = Vector3(crotation.x, 0.0, 0.0)
+	player_rotation_right = Basis.from_euler(Vector3(0.0, crotation.y, 0.0))
+	#print(player_rotation_up)
+	#print(Basis.from_euler(player_rotation))
+
+	#print(Vector3(crotation.x, crotation.y, 0.0))
+
+	player_rotation_up = Basis.from_euler(player_rotation_up)
+
+	#print(player_rotation_up)
+
+	cameraController.transform.basis = player_rotation_up
