@@ -1,6 +1,6 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
-@export var cameracontroller : Node3D
+@export var cameracontroller : CameraController
 
 # How fast the player moves in meters per second.
 @export var speed = 12
@@ -13,13 +13,13 @@ var decceleration = 0.2
 var inputDir : Vector2 = Vector2.ZERO
 var target_velocity
 
-@export var health: Node3D
+@export var health: Health
 
-@export var gun: Node3D
+@export var gun: Gun
 @export var gunRange: RayCast3D
 
-
 func _ready():
+	health.connect("dies", _player_dies)
 	target_velocity = Vector3.ZERO
 
 func _physics_process(delta : float):
@@ -65,11 +65,28 @@ func _physics_process(delta : float):
 	velocity = target_velocity
 	move_and_slide()
 
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot"):
 		gun.shoot(gunRange)
-	if Input.is_action_pressed("reload"):
+	if Input.is_action_just_pressed("reload"):
 		gun.reload()
 
+	if Input.is_action_just_pressed("interact"):
 
-func die() -> void:
+		var object = $CameraController/Marker3D/PickupRadius
+		for i in range(object.get_collision_count()):
+			var held_object = object.get_collider(i)
+			if held_object.is_class("RigidBody3D"):
+				if held_object.is_picked_up:
+					print("letting go")
+					held_object.is_picked_up = false
+					held_object.holder = null
+				else:
+					print("holding")
+					held_object.reparent(self)
+					held_object.is_picked_up = true
+					held_object.holder = cameracontroller
+
+
+
+func _player_dies() -> void:
 	pass

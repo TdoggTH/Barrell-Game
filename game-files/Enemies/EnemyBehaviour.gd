@@ -1,6 +1,6 @@
-extends Node
+class_name EnemyBehaviour extends Node
 
-@export var gun: Node3D
+@export var gun: Gun
 @export var gunRange: RayCast3D
 
 var seePlayer: bool
@@ -11,7 +11,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-	if gun.currentMag > 0:
+	if gun.currentMag > 0 and gunRange:
 		gun.shoot(gunRange)
 	if gun.currentMag == 0:
 		gun.reload()

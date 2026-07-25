@@ -25,16 +25,10 @@ gun = NodePath("Gun")
 health = NodePath("Health")
 enemyBehaviour = NodePath("EnemyBehaviour")
 
-[node name="Health" type="Node" parent="." unique_id=957116934]
-script = ExtResource("4_1fowp")
-maxHealthPoints = 30
-metadata/_custom_type_script = "uid://cnedrgorqj5w0"
-
-[node name="EnemyBehaviour" type="Node" parent="." unique_id=1198659735 node_paths=PackedStringArray("gun", "gunRange")]
+[node name="EnemyBehaviour" type="Node3D" parent="." unique_id=1821570043 node_paths=PackedStringArray("gun", "gunRange")]
 script = ExtResource("1_naotq")
 gun = NodePath("../Gun")
 gunRange = NodePath("../Gun/GunRange")
-metadata/_custom_type_script = "uid://bfwbfo5tnipio"
 
 [node name="Head" type="CollisionShape3D" parent="." unique_id=1150510503]
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, 0.92236304, 0)
@@ -62,3 +56,7 @@ transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0
 [node name="GunRange" type="RayCast3D" parent="Gun" unique_id=1723043203]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.22367644, 0.092691034, -0.29614115)
 target_position = Vector3(0, 0, 30)
+
+[node name="Health" type="Node3D" parent="." unique_id=1292185341]
+script = ExtResource("4_1fowp")
+metadata/_custom_type_script = "uid://cnedrgorqj5w0"

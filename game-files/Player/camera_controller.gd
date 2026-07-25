@@ -1,6 +1,4 @@
-extends Node3D
-
-@export var cameraController : Node3D
+class_name CameraController extends Node3D
 
 var mouse_sensitivity : float = 0.01
 var capture_mouse : bool
@@ -42,4 +40,4 @@ func update_camera_rotationx(input: Vector2) -> void:
 
 	#print(player_rotation_up)
 
-	cameraController.transform.basis = player_rotation_up
+	transform.basis = player_rotation_up

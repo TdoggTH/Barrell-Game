@@ -1,6 +1,7 @@
-extends Node3D
+class_name Health extends Node
 
-@export var character: CharacterBody3D
+signal dies
+
 @export var maxHealthPoints: int
 
 var currentHealthPoints: int
@@ -11,7 +12,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	# Update health status
 	if currentHealthPoints <= 0:
-		character.die()
+		dies.emit()
 
 func take_damage(damage) -> void:
 	currentHealthPoints -= damage

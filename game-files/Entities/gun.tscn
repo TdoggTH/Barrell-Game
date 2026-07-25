@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cssrijsjd66mp"]
 
-[ext_resource type="Script" uid="uid://c4yefgu2qku35" path="res://Entities/Gun.gd" id="1_wcyxf"]
-[ext_resource type="Script" uid="uid://c73iu0rvjlejs" path="res://Entities/Shooting.gd" id="2_wcyxf"]
+[ext_resource type="Script" uid="uid://c4yefgu2qku35" path="res://Entities/gun.gd" id="1_wcyxf"]
+[ext_resource type="Script" uid="uid://c73iu0rvjlejs" path="res://Entities/shooting.gd" id="2_wcyxf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dncql"]
 albedo_color = Color(0.24405202, 0.24405205, 0.24405202, 1)
@@ -56,12 +56,6 @@ mesh = SubResource("BoxMesh_pakj4")
 [node name="Limit" type="MeshInstance3D" parent="Shape" unique_id=336978738]
 mesh = SubResource("BoxMesh_7pw6a")
 
-[node name="Shooting" type="Node3D" parent="." unique_id=2041790855]
-script = ExtResource("2_wcyxf")
-
-[node name="BulletPosition" type="Marker3D" parent="Shooting" unique_id=1092734094]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09931931, 0.22757703)
-
 [node name="ShootingTimer" type="Timer" parent="." unique_id=217150568]
 wait_time = 0.5
 one_shot = true
@@ -73,5 +67,9 @@ one_shot = true
 [node name="AmmoCounter" type="Label3D" parent="." unique_id=1305123187]
 transform = Transform3D(-1.0000001, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1.0000001, 0.142629, 0.109928034, -0.01999931)
 text = "1"
+
+[node name="Shooting" type="Node" parent="." unique_id=1667320035]
+script = ExtResource("2_wcyxf")
+metadata/_custom_type_script = "uid://c73iu0rvjlejs"
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

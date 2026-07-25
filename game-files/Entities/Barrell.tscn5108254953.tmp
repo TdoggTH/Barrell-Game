@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ddty8hlgfngsi"]
+
+[ext_resource type="Shape3D" uid="uid://t84v6alu8m8o" path="res://Entities/BarrellCollision.tres" id="1_j3210"]
+[ext_resource type="Script" uid="uid://diidyat8kmvpy" path="res://Entities/barrell.gd" id="1_oqwgw"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_odav2"]
+height = 1.4
+
+[node name="Barrell" type="RigidBody3D" unique_id=1626555162]
+script = ExtResource("1_oqwgw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1774892215]
+shape = ExtResource("1_j3210")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1866058024]
+mesh = SubResource("CylinderMesh_odav2")

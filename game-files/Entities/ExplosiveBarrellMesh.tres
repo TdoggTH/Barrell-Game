@@ -1,0 +1,8 @@
+[gd_resource type="CylinderMesh" format=3 uid="uid://bkjniasth32pg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76bjh"]
+albedo_color = Color(0.7188686, 0.07149077, 0.21256766, 1)
+
+[resource]
+material = SubResource("StandardMaterial3D_76bjh")
+height = 1.4
