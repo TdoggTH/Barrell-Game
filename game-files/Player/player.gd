@@ -4,11 +4,16 @@ extends CharacterBody3D
 @export var PlayerModel : CollisionShape3D
 
 @export var speed : int = 12	# 
-@export var fall_acceleration : int = 50
 var camAngleYaw : float 	#Angle of CameraController
 var crouchHeight : float = 0.5  #height of crouch
 var playerHeight  : float = 2.0
 var crouching  = false
+@export var health: Node3D
+
+@export var gun: Node3D
+@export var gunRange: RayCast3D
+
+
 
 var acceleration : float = 0.2
 var decceleration : float = 0.2
@@ -47,6 +52,10 @@ func _physics_process(delta : float):
 	var forward = camera_basis.z
 	var right = camera_basis.x
 
+	# We create a local variable to store the input direction.
+	var direction = Vector3.ZERO
+
+
 
 	forward.y = 0
 	right.y = 0
@@ -64,7 +73,7 @@ func _physics_process(delta : float):
 	inputDir = Input.get_vector(
 		"move_left", "move_right",
 		"move_forward", "move_back")
-	var direction = (
+	direction = (
 		camera_basis
 		* Vector3(inputDir.x, 0 , inputDir.y)
 		).normalized()
@@ -102,3 +111,12 @@ func _physics_process(delta : float):
 	print(target_velocity)
 	velocity = target_velocity
 	move_and_slide()
+
+	if Input.is_action_pressed("shoot"):
+		gun.shoot(gunRange)
+	if Input.is_action_pressed("reload"):
+		gun.reload()
+
+
+func die() -> void:
+	pass
