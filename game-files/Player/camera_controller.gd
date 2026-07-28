@@ -6,8 +6,6 @@ var mouse_sensitivity : float = 0.001
 var capture_mouse : bool
 var mouse_input : Vector2
 var crotation : Vector3
-var player_rotation
-var player_rotation_right = Vector3.ZERO
 
 var player_rotation_right : Basis
 
