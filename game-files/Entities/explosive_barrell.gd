@@ -1,4 +1,4 @@
-extends "res://Entities/barrell.gd"
+extends Barrell
 
 
 # Called when the node enters the scene tree for the first time.

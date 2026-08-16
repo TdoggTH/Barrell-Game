@@ -1,6 +1,5 @@
 class_name Gun extends Node3D
 
-@export var shooting: Shooting
 @export var shootingTimer: Timer
 @export var reloadTimer: Timer
 
@@ -18,12 +17,11 @@ var currentMag: int
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 
-	shooting.magazineSize = magazineSize
 	currentMag = magazineSize
 
-	ammoCounter.text = String.num_int64(currentMag)
+	print(currentMag)
 
-	print(shooting.magazineSize)
+	ammoCounter.text = String.num_int64(currentMag)
 
 	#Should have this inside of Shooting node, but because we only have 1 gun it gets a pass
 	@warning_ignore("integer_division") var shotsPerSecond: int = floor(fireRate / 60)
@@ -39,12 +37,11 @@ func shoot(gunRange: RayCast3D):
 	if shootingTimer.is_stopped() and currentMag > 0 and reloadTimer.time_left == 0:
 		currentMag -= 1
 
-		var target = shooting.shoot(gunRange)
 
-		if target:
-			print(target, " ", target.health)
-			print("Gun: shooting ", target)
+		var target = gunRange.get_collider()
+		if target: #careful gunRange mask has correct target shootables
 			target.health.take_damage(damage)
+
 		shootingTimer.start()
 
 func reload() -> void:

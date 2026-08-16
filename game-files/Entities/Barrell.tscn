@@ -2,15 +2,24 @@
 
 [ext_resource type="Shape3D" uid="uid://t84v6alu8m8o" path="res://Entities/BarrellCollision.tres" id="1_j3210"]
 [ext_resource type="Script" uid="uid://diidyat8kmvpy" path="res://Entities/barrell.gd" id="1_oqwgw"]
+[ext_resource type="Script" uid="uid://cnedrgorqj5w0" path="res://Global Mechanics/health.gd" id="3_oqwgw"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_odav2"]
 height = 1.4
 
-[node name="Barrell" type="RigidBody3D" unique_id=1626555162]
+[node name="Barrell" type="RigidBody3D" unique_id=1626555162 node_paths=PackedStringArray("health")]
+collision_layer = 5
+collision_mask = 3
 script = ExtResource("1_oqwgw")
+health = NodePath("Health")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1774892215]
 shape = ExtResource("1_j3210")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1866058024]
 mesh = SubResource("CylinderMesh_odav2")
+
+[node name="Health" type="Node" parent="." unique_id=669901487]
+script = ExtResource("3_oqwgw")
+maxHealthPoints = 10
+metadata/_custom_type_script = "uid://cnedrgorqj5w0"

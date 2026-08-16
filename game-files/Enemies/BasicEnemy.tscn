@@ -20,6 +20,8 @@ height = 1.5
 
 [node name="BasicEnemy" type="CharacterBody3D" unique_id=1391856522 node_paths=PackedStringArray("gun", "health", "enemyBehaviour")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_ym6ep")
 gun = NodePath("Gun")
 health = NodePath("Health")
@@ -62,3 +64,4 @@ transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0
 [node name="GunRange" type="RayCast3D" parent="Gun" unique_id=1723043203]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.22367644, 0.092691034, -0.29614115)
 target_position = Vector3(0, 0, 30)
+collision_mask = 6

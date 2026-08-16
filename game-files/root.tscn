@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://chmdt3hsowt37" path="res://World/GenericFloor.tscn" id="3_3ipfy"]
 [ext_resource type="PackedScene" uid="uid://dl3la0wp7vcuv" path="res://Player/Player.tscn" id="3_vvh5c"]
 [ext_resource type="Script" uid="uid://dy6tplkmye4xy" path="res://menu.gd" id="4_28aoi"]
+[ext_resource type="Script" uid="uid://bter7a6vtgkea" path="res://World/entities.gd" id="4_g0d6c"]
 [ext_resource type="PackedScene" uid="uid://ddty8hlgfngsi" path="res://Entities/Barrell.tscn" id="5_3ipfy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vvh5c"]
@@ -20,8 +21,9 @@ glow_enabled = true
 
 [node name="Main" type="Node3D" unique_id=502212124]
 
-[node name="Player" parent="." unique_id=50377273 instance=ExtResource("3_vvh5c")]
+[node name="Player" parent="." unique_id=50377273 node_paths=PackedStringArray("entities") instance=ExtResource("3_vvh5c")]
 transform = Transform3D(1, -2.5956815e-08, -1.9873832e-07, 2.5956815e-08, 1, 1.1333098e-09, 1.9873832e-07, -1.133311e-09, 1, 0, 2.4820356, 0)
+entities = NodePath("../World/Entities")
 
 [node name="GUI" type="Control" parent="Player" unique_id=1420588390]
 layout_mode = 3
@@ -55,7 +57,12 @@ transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 1.7674203, 0.90000004, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 metadata/_edit_lock_ = true
 
-[node name="Entities" type="Node3D" parent="World" unique_id=1141825041]
+[node name="Entities" type="Node3D" parent="World" unique_id=1141825041 node_paths=PackedStringArray("player")]
+script = ExtResource("4_g0d6c")
+player = NodePath("../../Player")
+
+[node name="Barrell" parent="World/Entities" unique_id=1626555162 instance=ExtResource("5_3ipfy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 0)
 
 [node name="Menu" type="Control" parent="." unique_id=1887474672]
 layout_mode = 3
@@ -63,6 +70,3 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_28aoi")
-
-[node name="Barrell" parent="." unique_id=1626555162 instance=ExtResource("5_3ipfy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 0)

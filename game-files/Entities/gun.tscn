@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cssrijsjd66mp"]
 
 [ext_resource type="Script" uid="uid://c4yefgu2qku35" path="res://Entities/gun.gd" id="1_wcyxf"]
-[ext_resource type="Script" uid="uid://c73iu0rvjlejs" path="res://Entities/shooting.gd" id="2_wcyxf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dncql"]
 albedo_color = Color(0.24405202, 0.24405205, 0.24405202, 1)
@@ -29,9 +28,8 @@ albedo_color = Color(1, 1, 1, 0)
 material = SubResource("StandardMaterial3D_2hvgc")
 size = Vector3(0.075, 0.285, 0.3)
 
-[node name="Gun" type="Node3D" unique_id=312965893 node_paths=PackedStringArray("shooting", "shootingTimer", "reloadTimer", "ammoCounter")]
+[node name="Gun" type="Node3D" unique_id=312965893 node_paths=PackedStringArray("shootingTimer", "reloadTimer", "ammoCounter")]
 script = ExtResource("1_wcyxf")
-shooting = NodePath("Shooting")
 shootingTimer = NodePath("ShootingTimer")
 reloadTimer = NodePath("ReloadTimer")
 ammoCounter = NodePath("AmmoCounter")
@@ -67,9 +65,5 @@ one_shot = true
 [node name="AmmoCounter" type="Label3D" parent="." unique_id=1305123187]
 transform = Transform3D(-1.0000001, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1.0000001, 0.142629, 0.109928034, -0.01999931)
 text = "1"
-
-[node name="Shooting" type="Node" parent="." unique_id=1667320035]
-script = ExtResource("2_wcyxf")
-metadata/_custom_type_script = "uid://c73iu0rvjlejs"
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

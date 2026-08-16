@@ -16,6 +16,8 @@ radius = 0.2
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_pakj4"]
 
 [node name="Player" type="CharacterBody3D" unique_id=50377273 node_paths=PackedStringArray("cameracontroller", "health", "gun", "gunRange") groups=["Killable"]]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_xhfnw")
 cameracontroller = NodePath("CameraController")
 health = NodePath("Health")
@@ -35,6 +37,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14511985, -0.3071597)
 
 [node name="GunRange" type="RayCast3D" parent="CameraController/Marker3D" unique_id=1381235259]
 target_position = Vector3(0, 0, -30)
+collision_mask = 6
 debug_shape_thickness = 5
 
 [node name="Crosshair" type="Sprite3D" parent="CameraController/Marker3D" unique_id=2013968633]
@@ -45,7 +48,7 @@ texture = SubResource("CanvasTexture_pakj4")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CylinderShape3D_pakj4")
 target_position = Vector3(0, 1, 0)
-collision_mask = 3
+collision_mask = 4
 
 [node name="Camera3D" type="Camera3D" parent="CameraController" unique_id=2017626905]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14511985, 0.013517946)

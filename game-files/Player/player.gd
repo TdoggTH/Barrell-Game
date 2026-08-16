@@ -13,10 +13,14 @@ var decceleration = 0.2
 var inputDir : Vector2 = Vector2.ZERO
 var target_velocity
 
+@export var entities: Entities
+
 @export var health: Health
 
 @export var gun: Gun
 @export var gunRange: RayCast3D
+
+signal pickup_interactable(storageVector)
 
 func _ready():
 	health.connect("dies", _player_dies)
@@ -28,11 +32,6 @@ func _physics_process(delta : float):
 
 	# Get camera rotation for the direction later
 	var camera_basis = cameracontroller.player_rotation_right
-	var forward = camera_basis.z
-	var right = camera_basis.x
-
-	forward.y = 0
-	right.y = 0
 
 	transform.basis = camera_basis
 
@@ -71,20 +70,31 @@ func _physics_process(delta : float):
 		gun.reload()
 
 	if Input.is_action_just_pressed("interact"):
-
+		print("interact")
 		var object = $CameraController/Marker3D/PickupRadius
 		for i in range(object.get_collision_count()):
 			var held_object = object.get_collider(i)
-			if held_object.is_class("RigidBody3D"):
-				if held_object.is_picked_up:
-					print("letting go")
-					held_object.is_picked_up = false
-					held_object.holder = null
-				else:
-					print("holding")
-					held_object.reparent(self)
-					held_object.is_picked_up = true
-					held_object.holder = cameracontroller
+			print(held_object)
+			if held_object is Barrell:
+				match held_object.is_picked_up:
+					true:
+						held_object.collision_layer = 5
+						held_object.freeze = false
+						print("letting go")
+						held_object.reparent(entities)
+						held_object.is_picked_up = false
+
+					false:
+						held_object.collision_layer = 4
+						held_object.freeze = true
+						var storageVector: Vector3 = Vector3(
+							global_position.x,
+							global_position.y,
+							global_position.z) + Vector3(camera_basis * Vector3(0, 0, -1))
+						pickup_interactable.emit(storageVector)
+						print("holding")
+						held_object.reparent(self)
+						held_object.is_picked_up = true
 
 
 

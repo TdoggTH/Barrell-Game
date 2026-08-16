@@ -77,6 +77,12 @@ interact={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Level"
+3d_physics/layer_2="Characters"
+3d_physics/layer_3="Entities"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
