@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://dy6tplkmye4xy" path="res://menu.gd" id="4_28aoi"]
 [ext_resource type="Script" uid="uid://bter7a6vtgkea" path="res://World/entities.gd" id="4_g0d6c"]
 [ext_resource type="PackedScene" uid="uid://ddty8hlgfngsi" path="res://Entities/Barrell.tscn" id="5_3ipfy"]
+[ext_resource type="PackedScene" uid="uid://cqq08buxvkxch" path="res://Entities/ExplosiveBarrell.tscn" id="6_f5i44"]
+[ext_resource type="PackedScene" uid="uid://0i7mr5lj6gdi" path="res://Entities/PoisenBarrell.tscn" id="7_n0g3p"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vvh5c"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -63,6 +65,12 @@ player = NodePath("../../Player")
 
 [node name="Barrell" parent="World/Entities" unique_id=1626555162 instance=ExtResource("5_3ipfy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 0)
+
+[node name="ExplosiveBarrell" parent="World/Entities" unique_id=1052153375 instance=ExtResource("6_f5i44")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0)
+
+[node name="PoisenBarrell" parent="World/Entities" unique_id=1537571761 instance=ExtResource("7_n0g3p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 2)
 
 [node name="Menu" type="Control" parent="." unique_id=1887474672]
 layout_mode = 3

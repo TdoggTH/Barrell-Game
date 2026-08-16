@@ -2,16 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://ddty8hlgfngsi" path="res://Entities/Barrell.tscn" id="1_5eyma"]
 [ext_resource type="Script" uid="uid://iswjcdy215g1" path="res://Entities/explosive_barrell.gd" id="2_4d64h"]
+[ext_resource type="CylinderMesh" uid="uid://n3n766eqpx70" path="res://Entities/BarrellMesh.tres" id="3_yhhmo"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76bjh"]
-albedo_color = Color(0.7188686, 0.07149077, 0.21256766, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_5eyma"]
-material = SubResource("StandardMaterial3D_76bjh")
-height = 1.4
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yhhmo"]
+albedo_color = Color(0.7176471, 0.07058824, 0.21176471, 1)
 
 [node name="Barrell" unique_id=1626555162 instance=ExtResource("1_5eyma")]
 script = ExtResource("2_4d64h")
 
 [node name="MeshInstance3D" parent="CollisionShape3D" parent_id_path=PackedInt32Array(1774892215) index="0" unique_id=1866058024]
-mesh = SubResource("CylinderMesh_5eyma")
+mesh = ExtResource("3_yhhmo")
+surface_material_override/0 = SubResource("StandardMaterial3D_yhhmo")
